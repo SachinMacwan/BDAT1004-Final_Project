@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <title>Results Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/results.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <script type="text/javascript">
+        
+        const event = new Date("{{data['current']['last_updated']}}");
+        var time8= event.toLocaleTimeString();
+        console.log(time8)
+
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.load('current', { 'packages': ['corechart', 'gauge'] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data5 = new google.visualization.DataTable();
+            data5.addColumn('string', 'Time');
+            data5.addColumn('number', 'Temprature');
+            data5.addRows([
+                ["00:00", {{ data['forecast']['forecastday'][0]['hour'][0]['temp_c'] }} ],
+        ["03:00", {{ data['forecast']['forecastday'][0]['hour'][3]['temp_c'] }}],
+            ["06:00", {{ data['forecast']['forecastday'][0]['hour'][6]['temp_c'] }}],
+            ["09:00", {{ data['forecast']['forecastday'][0]['hour'][9]['temp_c'] }}],
+            ["12:00", {{ data['forecast']['forecastday'][0]['hour'][12]['temp_c'] }}],
+            ["15:00", {{ data['forecast']['forecastday'][0]['hour'][15]['temp_c'] }}],
+            ["18:00", {{ data['forecast']['forecastday'][0]['hour'][18]['temp_c'] }}],
+            ["21:00", {{ data['forecast']['forecastday'][0]['hour'][21]['temp_c'] }}],
+            ["23:00", {{ data['forecast']['forecastday'][0]['hour'][23]['temp_c'] }}]
+
+]);
+        var data7 = new google.visualization.DataTable();
+        data7.addColumn('date', 'Date');
+        data7.addColumn('number', 'Temprature');
+        data7.addRows([
+            [new Date("{{ data['forecast']['forecastday'][0]['date']}}"), {{ data['forecast']['forecastday'][0]['day']['avgtemp_c'] }}],
+            [new Date("{{ data['forecast']['forecastday'][1]['date']}}"), {{ data['forecast']['forecastday'][1]['day']['avgtemp_c'] }}],
+            [new Date("{{ data['forecast']['forecastday'][2]['date']}}"), {{ data['forecast']['forecastday'][2]['day']['avgtemp_c'] }}],
+            [new Date("{{ data['forecast']['forecastday'][3]['date']}}"), {{ data['forecast']['forecastday'][3]['day']['avgtemp_c'] }}],
+            [new Date("{{ data['forecast']['forecastday'][4]['date']}}"), {{ data['forecast']['forecastday'][4]['day']['avgtemp_c'] }}],
+            [new Date("{{ data['forecast']['forecastday'][5]['date']}}"), {{ data['forecast']['forecastday'][5]['day']['avgtemp_c'] }}],
+
+        ]);
+
+        var options = {
+            title: 'Daily Temprature',
+            width: 550, height: 260,
+            curveType: 'function',
+
+            legend: { position: 'bottom' }
+        };
+        var options3 = {
+            title: 'Weekly temprature',
+            width: 550, height: 260,
+            curveType: 'function',
+            hAxis: {
+                format: 'yy-mm-dd',
+                gridlines: { count: 15 }
+            },
+            legend: { position: 'bottom' }
+        };
+        options3.hAxis.format === 'M/d/yy' ?
+        options3.hAxis.format = 'yyyy-mm-dd' :
+        options3.hAxis.format = 'M/d/yy';
+        var data6 = google.visualization.arrayToDataTable([
+            ['Label', 'Value'],
+            ['Wind in mph', {{ data['current']['wind_mph'] }}],
+            ['humidity', {{ data['current']['humidity'] }}]
+            ]);
+
+        var options2 = {
+            width: 400, height: 160,
+            redFrom: 90, redTo: 100,
+            yellowFrom: 75, yellowTo: 90,
+            minorTicks: 5
+        };
+
+
+        var chart5 = new google.visualization.LineChart(document.getElementById('chart_div5'));
+        chart5.draw(data5, options);
+        var chart6 = new google.visualization.Gauge(document.getElementById('chart_div'));
+        chart6.draw(data6, options2);
+        var chart7 = new google.visualization.LineChart(document.getElementById('chart_div7'));
+        chart7.draw(data7, options3);
+
+        setInterval(function () {
+            data6.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+            chart6.draw(data6, options2);
+        }, 13000);
+        setInterval(function () {
+            data6.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+            chart6.draw(data6, options2);
+        }, 5000);
+        setInterval(function () {
+            data6.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+            chart6.draw(data6, options2);
+        }, 26000);
+    }
+    
+    </script>
+</head>
+
+<body>
+    <div id="weatherResults">
+        <div>
+            <h2>Weather summary in {{data['location']['name']}}</h2>
+        </div>
+        <div class="main_div">
+            <div class="graphs">
+                <div class="main_graph" id="chart_div5" style="margin:0px; padding:0px;">
+                </div>
+                <div class="main_graph" id="chart_div7" style="margin:0px; padding:0px;">
+                </div>
+                
+            </div>
+
+            <div class="second_div">
+                <div id="chart_div" style="margin:0px; padding:0px 120px;">
+                </div>
+                <div class="other_info_1">
+                    <p>Feelslike   :    {{data['current']['feelslike_c']}}</p>
+                    <p>Last updated at   :    {{data['current']['last_updated']}}</p>
+                    <p>Condition   :   {{data['current']['condition']['text']}}</p>
+                </div>
+                <div class="other_info_2">
+                    <p>Wind(in mph)   :   {{data['current']['wind_mph']}}</p>
+                    <p>Humidity   :   {{data['current']['humidity']}}</p>
+                    <p>UV   :   {{data['current']['uv']}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

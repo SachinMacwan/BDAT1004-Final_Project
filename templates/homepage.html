@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="home">
+  <html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/homepage.css') }}">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript"></script>
+    <script type="text/JavaScript" src=" https://MomentJS.com/downloads/moment.js"></script>
+
+
+    <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Temprature');
+        data.addRows([
+        [new Date("{{ London['forecast']['forecastday'][0]['date']}}"), {{ London['forecast']['forecastday'][0]['day']['avgtemp_c']}} ],
+        [new Date("{{ London['forecast']['forecastday'][1]['date']}}"), {{ London['forecast']['forecastday'][1]['day']['avgtemp_c']}}],
+        [new Date("{{ London['forecast']['forecastday'][2]['date']}}"), {{ London['forecast']['forecastday'][2]['day']['avgtemp_c']}}],
+        [new Date("{{ London['forecast']['forecastday'][3]['date']}}"), {{ London['forecast']['forecastday'][3]['day']['avgtemp_c']}}],
+        [new Date("{{ London['forecast']['forecastday'][4]['date']}}"), {{ London['forecast']['forecastday'][4]['day']['avgtemp_c']}}],
+        [new Date("{{ London['forecast']['forecastday'][5]['date']}}"), {{ London['forecast']['forecastday'][5]['day']['avgtemp_c']}}],
+
+]);
+
+      var data1 = new google.visualization.DataTable();
+      data1.addColumn('date', 'Date');
+      data1.addColumn('number', 'Temprature');
+      data1.addRows([
+        [new Date("{{ Mumbai['forecast']['forecastday'][0]['date']}}"), {{ Mumbai['forecast']['forecastday'][0]['day']['avgtemp_c']}}],
+        [new Date("{{ Mumbai['forecast']['forecastday'][1]['date']}}"), {{ Mumbai['forecast']['forecastday'][1]['day']['avgtemp_c']}}],
+        [new Date("{{ Mumbai['forecast']['forecastday'][2]['date']}}"), {{ Mumbai['forecast']['forecastday'][2]['day']['avgtemp_c']}}],
+        [new Date("{{ Mumbai['forecast']['forecastday'][3]['date']}}"), {{ Mumbai['forecast']['forecastday'][3]['day']['avgtemp_c']}}],
+        [new Date("{{ Mumbai['forecast']['forecastday'][4]['date']}}"), {{ Mumbai['forecast']['forecastday'][4]['day']['avgtemp_c']}}],
+        [new Date("{{ Mumbai['forecast']['forecastday'][5]['date']}}"), {{ Mumbai['forecast']['forecastday'][5]['day']['avgtemp_c']}}],
+      ]);
+      var data2 = new google.visualization.DataTable();
+      data2.addColumn('date', 'Date');
+      data2.addColumn('number', 'Temprature');
+      data2.addRows([
+        [new Date("{{ Tokyo['forecast']['forecastday'][0]['date']}}"), {{ Tokyo['forecast']['forecastday'][0]['day']['avgtemp_c']}}],
+        [new Date("{{ Tokyo['forecast']['forecastday'][1]['date']}}"), {{ Tokyo['forecast']['forecastday'][1]['day']['avgtemp_c']}}],
+        [new Date("{{ Tokyo['forecast']['forecastday'][2]['date']}}"), {{ Tokyo['forecast']['forecastday'][2]['day']['avgtemp_c']}}],
+        [new Date("{{ Tokyo['forecast']['forecastday'][3]['date']}}"), {{ Tokyo['forecast']['forecastday'][3]['day']['avgtemp_c']}}],
+        [new Date("{{ Tokyo['forecast']['forecastday'][4]['date']}}"), {{ Tokyo['forecast']['forecastday'][4]['day']['avgtemp_c']}}],
+        [new Date("{{ Tokyo['forecast']['forecastday'][5]['date']}}"), {{ Tokyo['forecast']['forecastday'][5]['day']['avgtemp_c']}}], 
+      ]);
+      var data3 = new google.visualization.DataTable();
+      data3.addColumn('date', 'Date of week');
+      data3.addColumn('number', 'Temprature');
+      data3.addRows([
+        [new Date("{{ Shanghai['forecast']['forecastday'][0]['date']}}"), {{ Shanghai['forecast']['forecastday'][0]['day']['avgtemp_c']}}],
+        [new Date("{{ Shanghai['forecast']['forecastday'][1]['date']}}"), {{ Shanghai['forecast']['forecastday'][1]['day']['avgtemp_c']}}],
+        [new Date("{{ Shanghai['forecast']['forecastday'][2]['date']}}"), {{ Shanghai['forecast']['forecastday'][2]['day']['avgtemp_c']}}],
+        [new Date("{{ Shanghai['forecast']['forecastday'][3]['date']}}"), {{ Shanghai['forecast']['forecastday'][3]['day']['avgtemp_c']}}],
+        [new Date("{{ Shanghai['forecast']['forecastday'][4]['date']}}"), {{ Shanghai['forecast']['forecastday'][4]['day']['avgtemp_c'] }}],
+        [new Date("{{ Shanghai['forecast']['forecastday'][5]['date']}}"), {{ Shanghai['forecast']['forecastday'][5]['day']['avgtemp_c'] }}],
+      ]);
+      var data4 = new google.visualization.DataTable();
+      data4.addColumn('date', 'Date');
+      data4.addColumn('number', 'Temprature');
+      data4.addRows([
+        [new Date("{{ Toronto['forecast']['forecastday'][0]['date']}}"), {{ Toronto['forecast']['forecastday'][0]['day']['avgtemp_c']}}],
+        [new Date("{{ Toronto['forecast']['forecastday'][1]['date']}}"), {{ Toronto['forecast']['forecastday'][1]['day']['avgtemp_c']}}],
+        [new Date("{{ Toronto['forecast']['forecastday'][2]['date']}}"), {{ Toronto['forecast']['forecastday'][2]['day']['avgtemp_c']}}],
+        [new Date("{{ Toronto['forecast']['forecastday'][3]['date']}}"), {{ Toronto['forecast']['forecastday'][3]['day']['avgtemp_c']}}],
+        [new Date("{{ Toronto['forecast']['forecastday'][4]['date']}}"), {{ Toronto['forecast']['forecastday'][4]['day']['avgtemp_c']}}],
+        [new Date("{{ Toronto['forecast']['forecastday'][5]['date']}}"), {{ Toronto['forecast']['forecastday'][5]['day']['avgtemp_c']}}]
+
+      ]);
+      var data5 = new google.visualization.DataTable();
+      data5.addColumn('date', 'Date');
+      data5.addColumn('number', 'Temprature');
+      data5.addRows([
+        [new Date("{{ Melbourne['forecast']['forecastday'][0]['date']}}"), {{ Melbourne['forecast']['forecastday'][0]['day']['avgtemp_c']}}],
+        [new Date("{{ Melbourne['forecast']['forecastday'][1]['date']}}"), {{ Melbourne['forecast']['forecastday'][1]['day']['avgtemp_c']}}],
+        [new Date("{{ Melbourne['forecast']['forecastday'][2]['date']}}"), {{ Melbourne['forecast']['forecastday'][2]['day']['avgtemp_c']}}],
+        [new Date("{{ Melbourne['forecast']['forecastday'][3]['date']}}"), {{ Melbourne['forecast']['forecastday'][3]['day']['avgtemp_c']}}],
+        [new Date("{{ Melbourne['forecast']['forecastday'][4]['date']}}"), {{ Melbourne['forecast']['forecastday'][4]['day']['avgtemp_c']}}],
+        [new Date("{{ Melbourne['forecast']['forecastday'][5]['date']}}"), {{ Melbourne['forecast']['forecastday'][5]['day']['avgtemp_c']}}]
+
+      ]);
+      var options = {
+        width: 600, height: 300,
+        curveType: 'function',
+        hAxis: {
+          format: 'yy-mm-dd',
+          gridlines: { count: 15 }
+        },
+        legend: { position: 'bottom' }
+      };
+      //var options2 = {title:'Mumbai',width:600,height:300,legend: { position: 'bottom' },curveType: 'function'};
+      options.hAxis.format === 'M/d/yy' ?
+        options.hAxis.format = 'yyyy-mm-dd' :
+        options.hAxis.format = 'M/d/yy';
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+      var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+      var chart3 = new google.visualization.LineChart(document.getElementById('chart_div3'));
+      var chart4 = new google.visualization.LineChart(document.getElementById('chart_div4'));
+      var chart5 = new google.visualization.LineChart(document.getElementById('chart_div5'));
+      
+      
+      chart.draw(data, options);
+      chart1.draw(data1, options);
+      chart2.draw(data2, options);
+      chart3.draw(data3, options);
+      chart4.draw(data4, options);
+      chart5.draw(data5, options);
+
+
+  }
+
+    </script>
+  </head>
+
+  <body>
+    <div class="div_container" style="margin:0px;padding:0px;
+  width:700px;
+  height:800px;
+  background-color:#fff;
+  display:grid;
+  grid-template-columns: 550px 650px;
+  grid-row-gap: 0px;">
+
+      <div>
+        <p>Temprature in Toronto</p>
+        <div id="chart_div4" style="margin:0px; padding:0px;"></div>
+      </div>
+
+      <div>
+        <p>Temprature in Mumbai</p>
+      <div id="chart_div1" style="margin:0px; padding:0px;"></div>
+      </div>
+
+      <div>
+        <p>Temprature in Tokyo</p>
+      <div id="chart_div2" style="margin:0px; padding:0px;"></div>
+      </div>
+
+      <div>
+        <p>Temprature in Shanghai</p>
+      <div id="chart_div3" style="margin:0px; padding:0px;"></div>
+      </div>
+
+      <div>
+        <p>Temprature in London</p>
+      <div id="chart_div" style="margin:0px; padding:0px;"></div>
+      </div>
+
+      <div>
+        <p>Temprature in Melbourne</p>
+      <div id="chart_div5" style="margin:0px; padding:0px;"></div>
+      </div>
+</div>
+</body>
+
+</html>
+</div>
+{% endblock %}

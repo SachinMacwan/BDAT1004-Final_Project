@@ -1,0 +1,19 @@
+#weatherResults {
+    background-color: #5291f7;
+    font-family: 'Lato', sans-serif;
+    font-size: 24px;
+    height:95vh;
+    width: 98vw;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+}
+h2{
+    font-size: 25px;
+}
+.main_div{
+    display: flex;
+    flex-direction: row;
+    background-color: azure;
+    justify-content: space-around;
+}
