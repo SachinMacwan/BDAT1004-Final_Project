@@ -9,12 +9,12 @@ app = Flask(__name__)
 client = MongoClient("mongodb+srv://sach:12345@cluster0.zksvv.mongodb.net/?retryWrites=true&w=majority")
 db = client.Weather_Dashboard_data
 
-r1 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4279d0576b514746a63194544220108&q=London&days=7&aqi=no&alerts=no")
-r3 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4279d0576b514746a63194544220108&q=Tokyo&days=7&aqi=no&alerts=no")
-r2 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4279d0576b514746a63194544220108&q=Mumbai&days=7&aqi=no&alerts=no")
-r4 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4279d0576b514746a63194544220108&q=Shanghai&days=7&aqi=no&alerts=no")
-r5 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4279d0576b514746a63194544220108&q=Toronto&days=7&aqi=no&alerts=no")
-r6 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4279d0576b514746a63194544220108&q=Melbourne&days=7&aqi=no&alerts=no")
+r1 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=a4046e226d8640f8a39152059221508&q=London&days=7&aqi=no&alerts=no")
+r3 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=a4046e226d8640f8a39152059221508&q=Tokyo&days=7&aqi=no&alerts=no")
+r2 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=a4046e226d8640f8a39152059221508&q=Mumbai&days=7&aqi=no&alerts=no")
+r4 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=a4046e226d8640f8a39152059221508&q=Shanghai&days=7&aqi=no&alerts=no")
+r5 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=a4046e226d8640f8a39152059221508&q=Toronto&days=7&aqi=no&alerts=no")
+r6 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=a4046e226d8640f8a39152059221508&q=Melbourne&days=7&aqi=no&alerts=no")
 
 
 
@@ -87,7 +87,7 @@ def render_results():
 
 
 def get_weather_results(name):
-    api_url = "http://api.weatherapi.com/v1/forecast.json?key=4279d0576b514746a63194544220108&q={}&days=7&aqi=no&alerts=no".format(name)
+    api_url = "http://api.weatherapi.com/v1/forecast.json?key=a4046e226d8640f8a39152059221508&q={}&days=7&aqi=no&alerts=no".format(name)
     r = requests.get(api_url)
     return r.json()
 
